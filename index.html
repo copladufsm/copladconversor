@@ -34,7 +34,7 @@
         .container {
             max-width: 1050px;
             margin: 50px auto;
-            background-color: rgba(255, 255, 255, 0.8); /* Fundo branco semi-transparente */
+            background-color: rgba(90, 76, 67, 0.25); /* Novo fundo com 25% de transparência, ajuster o último item */
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -46,7 +46,7 @@
         }
 
         .logo {
-            width: 200px;
+            width: 300px;
             height: 200px;
             object-fit: contain;
             margin-bottom: 15px;
@@ -59,16 +59,20 @@
 
         h2 {
             text-align: center;
-            font-size: 14px;
-            padding: 15px;
+            font-size: 16px;
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
             color: #025E8D;
         }
 
         h3 {
-            text-align: left;
-            font-size: 12px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             padding: 15px;
-            color: #063970;
+            color: #FAFAFA;
+          
         }
 
         .editor {
@@ -78,7 +82,7 @@
             margin-bottom: 20px;
             font-size: 14px;
             border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 12px;
             resize: vertical;
             background-color: #f5f7fa;
             text-align: justify;
@@ -91,25 +95,25 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            margin-bottom: 35px;
-            gap: 10px; /* Adicionando espaçamento entre os botões */
+            margin-bottom: 20px;
+            gap: 3px; /* Adicionando espaçamento entre os botões */
         }
 
         .toolbar, .alignment-bar, .indent-bar, .color-bar {
             display: flex;
-            gap: 10px; /* Espaçamento entre os botões */
+            gap: 5px; /* Espaçamento entre os botões */
         }
 
         .toolbar button, .alignment-bar button, .indent-bar button, .color-bar button {
             padding: 10px 15px;
-            font-size: 12px;
+            font-size: 10px;
             border: 1px solid #000;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
             background-color: #E9F9FF;
             color: black;
             transition: background-color 0.3s ease;
-            height: 40px; /* Definindo altura fixa para todos os botões */
+            height: 30px; /* Definindo altura fixa para todos os botões */
         }
 
         .toolbar button:hover, .alignment-bar button:hover, .indent-bar button:hover, .color-bar button:hover {
@@ -127,7 +131,7 @@
 
         .code-output {
             border: 1px solid #ddd;
-            padding: 12px;
+            padding: 12px;border-radius: 10px;
             background-color: #fafafa;
             min-height: 200px;
             font-family: monospace;
@@ -214,20 +218,27 @@
             text-align: center;
             color: black;
         }
+
+        /* Adicionando o espaço de 10px abaixo da barra de cores */
+        .color-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px; /* Adicionando 10px de margem abaixo da barra de cores */
+        }
+
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header">
-        <!-- Substituindo o logo antigo pela nova imagem -->
         <img src="https://www.ufsm.br/app/uploads/sites/344/2024/11/Logo_Proplan_UFSM_png.png" alt="Logo" class="logo">
         <h1>HYPERTEXT MARKUP LANGUAGE  CONVERSOR</h1> 
     </div>
 
     <h2>FORMATAÇÃO</h2> 
     <div class="toolbar-container">
-
         <!-- Separador -->
         <div class="separator">|</div>
 
@@ -236,12 +247,14 @@
             <button onclick="insertCabecalho()">Inserir Cabeçalho</button>
         </div>
 
-        <!-- Separador -->
-        <div class="separator">|</div>
-
-        <!-- Padrão Ementa -->
+  <!-- Padrão Ementa -->
         <div class="toolbar">
             <button onclick="applyEmenta()" class="ementa-button">Padrão Ementa</button>
+        </div>
+
+  <!-- Botão de Inserir Rodapé -->
+        <div class="toolbar">
+            <button onclick="insertRodape()">Rodapé</button>
         </div>
 
         <!-- Separador -->
@@ -281,17 +294,16 @@
 
         <!-- Barra de Recuo -->
         <div class="indent-bar">
-            <button onclick="applyIndent('right')"><i class="fas fa-outdent"></i> +0.5cm</button>
-            <button onclick="applyIndent('left')"><i class="fas fa-indent"></i> -0.5cm</button>
+            <button onclick="applyIndent('left')"><i class="fas fa-outdent"></i> +0.5cm</button>
+            <button onclick="applyIndent('right')"><i class="fas fa-indent"></i> -0.5cm</button>
         </div>
-
 
         <!-- Botões de cores -->
         <div class="color-bar">
-                       <button onclick="applyColor('black')"><i class="fas fa-paint-brush" style="color: black;"></i> Preto</button>                  
-                       <button onclick="applyColor('blue')"><i class="fas fa-paint-brush" style="color: blue;"></i> Azul T</button>
-                       <button onclick="applyColor('#800000')"><i class="fas fa-paint-brush" style="color: #800000;"></i> Marom B</button>
-                       <button onclick="applyColor('red')"><i class="fas fa-paint-brush" style="color: red;"></i> Vermelho</button>
+            <button onclick="applyColor('black')"><i class="fas fa-paint-brush" style="color: black;"></i> Preto</button>                  
+            <button onclick="applyColor('blue')"><i class="fas fa-paint-brush" style="color: blue;"></i> Azul T</button>
+            <button onclick="applyColor('#800000')"><i class="fas fa-paint-brush" style="color: #800000;"></i> Marom B</button>
+            <button onclick="applyColor('red')"><i class="fas fa-paint-brush" style="color: red;"></i> Vermelho</button>
         </div>
 
     </div>
@@ -312,10 +324,10 @@
         <button onclick="copyHTML()">Copiar HTML</button>
     </div>
 
- <h3>
-<p> CÓDIGO BÁSE:   Bolsista Tainá Leão</ul>
-<p> AJUSTES REALIZADOS POR:  Administrador Igor Ceratti Treptow</ul> / Administrador Carlo Castellanelli
-</h3>
+    <h3>
+        <p> CÓDIGO-FONTE BASE:  Tainá Leão</p>
+        <p> CÓDIGO-FONTE FINAL:  Administrador Igor Ceratti / Administrador Carlo Castellanelli</p>
+    </h3>
 </div>
 
 <script>
@@ -352,13 +364,21 @@
         }
     }
 
-    function applyEmenta() {
-        const editor = document.getElementById('inputText');
-        document.execCommand('justifyLeft'); // Recuo à esquerda
-        document.execCommand('insertHTML', false, '<span style="color:#800000; text-indent: 9cm;">' + window.getSelection().toString() + '</span>');
+function applyEmenta() {
+    const editor = document.getElementById('inputText');
+    const selectedText = window.getSelection().toString();  // Verifica o texto selecionado
+    
+    if (selectedText.trim() === "") {  // Se não houver texto selecionado, não faz nada
+        return;  // Sai da função, sem fazer alterações
     }
+    
+    const range = window.getSelection().getRangeAt(0);  // Obtém o intervalo de seleção
+    const ementaHTML = `<span style="color:#800000; display:block; text-align:justify; margin-left: 9cm;">${selectedText}</span>`;
+    range.deleteContents();
+    range.insertNode(document.createRange().createContextualFragment(ementaHTML));
+}
 
-    function insertCabecalho() {
+function insertCabecalho() {
         const editor = document.getElementById('inputText');
         const imgTag = '<div align="center"><img src="https://www.ufsm.br/pro-reitorias/proplan/wp-content/uploads/sites/344/2019/09/brasao-da-republica-do-brasil-logo.png" alt="Brasão República Federativa do Brasil" width="6%" height="6%"></div>';
         const texto1 = '<h1><font color="blue"><font size="5"><div align="center">MINISTÉRIO DA EDUCAÇÃO</font></font></div></h1>';
@@ -391,8 +411,14 @@
         const editor = document.getElementById('inputText');
         document.execCommand('foreColor', false, color);
     }
-</script>
 
+ function insertRodape() {
+        const editor = document.getElementById('inputText');
+        const rodapeTexto = '<p><span style="color: red;">Este texto não substitui o documento original, publicado no Portal de Documentos.</span> Disponível em (insira o link do portal aqui):</p>';
+        document.execCommand('insertHTML', false, rodapeTexto);
+    }
+
+</script>
 
 </body>
 </html>
