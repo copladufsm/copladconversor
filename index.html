@@ -398,28 +398,18 @@ function insertCabecalho() {
         document.execCommand('insertHTML', false, imgTag + texto1 + texto2 + texto3 + texto4);
     }
 
-function formatHTML(html) {
-    const indent = "    "; // Usando 4 espaços para indentação
+function formatHTML(html) { 
     let formatted = '';
     let reg = /(>)(<)(\/*)/g;
-    let xml = html.replace(reg, '$1\r\n$2$3');
-    let pad = 0;
+    let xml = html.replace(reg, '$1\r\n$2$3'); // Quebra de linha entre as tags
     xml.split('\r\n').forEach(function(node) {
-        let indentLevel = 0;
-        if (node.match(/.+<\/\w[^>]*>$/)) {
-            indentLevel = 0;
-        } else if (node.match(/^<\/\w/)) {
-            if (pad > 0) pad -= 1;
-        } else if (node.match(/^<\w[^>]*[^\/]>.*$/)) {
-            indentLevel = 1;
-        } else {
-            indentLevel = 0;
-        }
-        formatted += new Array(pad + 1).join(indent) + node + '\r\n';
-        if (indentLevel) pad += 1;
+        // Adiciona a tag sem qualquer indentação
+        formatted += node + '\r\n';
     });
-    return formatted;
+
+    return formatted.trim(); // Remove a última quebra de linha extra
 }
+
   
  function convertToHTML() {
     const editor = document.getElementById('inputText');
