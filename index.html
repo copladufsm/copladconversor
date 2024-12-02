@@ -146,7 +146,7 @@
             font-family: monospace;
             overflow-y: auto;
             white-space: pre-wrap;
-            height: 400px; /* Limite de altura */
+            height: 400px; 
         }
 
         .button-container {
@@ -377,7 +377,7 @@ function applyEmenta() {
     const selectedText = window.getSelection().toString();  
     
     if (selectedText.trim() === "") {  
-        return;  // Sai da função, sem fazer alterações
+        return;  
     }
     
     const range = window.getSelection().getRangeAt(0); 
@@ -402,7 +402,7 @@ function formatHTML(html) {
     let reg = /(>)(<)(\/*)/g;
     let xml = html.replace(reg, '$1\r\n$2$3'); 
     xml.split('\r\n').forEach(function(node) {
-        // Adiciona a tag sem qualquer indentação
+       
         formatted += node + '\r\n';
     });
 
