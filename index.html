@@ -27,14 +27,14 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    z-index: -1; /* Colocando a imagem atrás de todos os outros elementos */
-    opacity: 0.9; /* A imagem ficará com 50% de transparência */
+    z-index: -1;
+    opacity: 0.9; 
 }
 
         .container {
             max-width: 1050px;
             margin: 50px auto;
-            background-color: rgba(64, 63, 59, 0.5); /* Novo fundo com 60% de transparência, ajuster o último item */
+            background-color: rgba(64, 63, 59, 0.5); 
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -105,12 +105,12 @@
             flex-wrap: wrap;
             align-items: center;
             margin-bottom: 20px;
-            gap: 3px; /* Adicionando espaçamento entre os botões */
+            gap: 3px; 
         }
 
         .toolbar, .alignment-bar, .indent-bar, .color-bar {
             display: flex;
-            gap: 5px; /* Espaçamento entre os botões */
+            gap: 5px; 
         }
 
         .toolbar button, .alignment-bar button, .indent-bar button, .color-bar button {
@@ -122,7 +122,7 @@
             background-color: #E9F9FF;
             color: black;
             transition: background-color 0.3s ease;
-            height: 30px; /* Definindo altura fixa para todos os botões */
+            height: 30px; 
         }
 
         .toolbar button:hover, .alignment-bar button:hover, .indent-bar button:hover, .color-bar button:hover {
@@ -228,12 +228,11 @@
             color: black;
         }
 
-        /* Adicionando o espaço de 10px abaixo da barra de cores */
         .color-bar {
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-bottom: 10px; /* Adicionando 10px de margem abaixo da barra de cores */
+            margin-bottom: 10px; 
         }
 
     </style>
@@ -340,7 +339,7 @@
 </div>
 
 <script>
-    let indentLevel = 0; // Variável para controlar o nível de recuo.
+    let indentLevel = 0; 
 
     function applyAlignment(alignment) {
         const editor = document.getElementById('inputText');
@@ -366,22 +365,22 @@
         const editor = document.getElementById('inputText');
         if (direction === 'left') {
             document.execCommand('outdent');
-            indentLevel--; // Diminuir o nível de recuo
+            indentLevel--; 
         } else {
             document.execCommand('indent');
-            indentLevel++; // Aumentar o nível de recuo
+            indentLevel++; 
         }
     }
 
 function applyEmenta() {
     const editor = document.getElementById('inputText');
-    const selectedText = window.getSelection().toString();  // Verifica o texto selecionado
+    const selectedText = window.getSelection().toString();  
     
     if (selectedText.trim() === "") {  // Se não houver texto selecionado, não faz nada
         return;  // Sai da função, sem fazer alterações
     }
     
-    const range = window.getSelection().getRangeAt(0);  // Obtém o intervalo de seleção
+    const range = window.getSelection().getRangeAt(0); 
     const ementaHTML = `<span style="color:#800000; display:block; text-align:justify; margin-left: 9cm;">${selectedText}</span>`;
     range.deleteContents();
     range.insertNode(document.createRange().createContextualFragment(ementaHTML));
@@ -401,13 +400,13 @@ function insertCabecalho() {
 function formatHTML(html) { 
     let formatted = '';
     let reg = /(>)(<)(\/*)/g;
-    let xml = html.replace(reg, '$1\r\n$2$3'); // Quebra de linha entre as tags
+    let xml = html.replace(reg, '$1\r\n$2$3'); 
     xml.split('\r\n').forEach(function(node) {
         // Adiciona a tag sem qualquer indentação
         formatted += node + '\r\n';
     });
 
-    return formatted.trim(); // Remove a última quebra de linha extra
+    return formatted.trim(); 
 }
 
   
